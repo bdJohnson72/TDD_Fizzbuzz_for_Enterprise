@@ -4,11 +4,6 @@
         <application>FizzBuzz_6000</application>
         <visible>true</visible>
     </applicationVisibilities>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>FizzBuzz__c.Results__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>FizzBuzz</label>
     <objectPermissions>
@@ -16,7 +11,7 @@
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>FizzBuzz__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>

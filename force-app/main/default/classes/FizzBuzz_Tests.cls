@@ -2,14 +2,14 @@
  * Created by Brooks Johnson on 11/13/2021.
  */
 
-//if divisible by 3 and 5 return fizz buzz
 
 @IsTest
 private class FizzBuzz_Tests {
     @IsTest
     static void itShouldReturnTrueFizz() {
         //given
-        FizzBuzz fizzbuzz = new FizzBuzz();
+        List<FizzBuzz__c> fizzBuzzes = new List<FizzBuzz__c>();
+        FizzBuzz fizzbuzz = new FizzBuzz(fizzBuzzes);
         //when
         Boolean result = fizzbuzz.isFizz(3);
         //then
@@ -19,7 +19,8 @@ private class FizzBuzz_Tests {
     @IsTest
     static void itShouldNotReturnTrueForFizz(){
         //given
-        FizzBuzz fizzbuzz = new FizzBuzz();
+        List<FizzBuzz__c> fizzBuzzes = new List<FizzBuzz__c>();
+        FizzBuzz fizzbuzz = new FizzBuzz(fizzBuzzes);
         //when
         Boolean result = fizzbuzz.isFizz(2);
         //then
@@ -29,7 +30,8 @@ private class FizzBuzz_Tests {
     @IsTest
     static void itShouldReturnTrueBuzz(){
         //given
-        FizzBuzz fizzbuzz = new FizzBuzz();
+        List<FizzBuzz__c> fizzBuzzes = new List<FizzBuzz__c>();
+        FizzBuzz fizzbuzz = new FizzBuzz(fizzBuzzes);
         //when
         Boolean result = fizzbuzz.isBuzz(5);
         //then
@@ -39,7 +41,8 @@ private class FizzBuzz_Tests {
     @IsTest
     static void itShouldReturnFalseBuzz(){
         //given
-        FizzBuzz fizzbuzz = new FizzBuzz();
+        List<FizzBuzz__c> fizzBuzzes = new List<FizzBuzz__c>();
+        FizzBuzz fizzbuzz = new FizzBuzz(fizzBuzzes);
         //when
         Boolean result = fizzbuzz.isBuzz(6);
         //then
@@ -49,7 +52,8 @@ private class FizzBuzz_Tests {
     @IsTest
     static void itShouldReturnTrueFizzBuzz(){
         //given
-        FizzBuzz fizzbuzz = new FizzBuzz();
+        List<FizzBuzz__c> fizzBuzzes = new List<FizzBuzz__c>();
+        FizzBuzz fizzbuzz = new FizzBuzz(fizzBuzzes);
         //when
         Boolean result = fizzbuzz.isFizzBuzz(15);
         //then
@@ -59,10 +63,34 @@ private class FizzBuzz_Tests {
     @IsTest
     static void itShouldReturnFalseFizzBuzz(){
         //given
-        FizzBuzz fizzbuzz = new FizzBuzz();
+        List<FizzBuzz__c> fizzBuzzes = new List<FizzBuzz__c>();
+        FizzBuzz fizzbuzz = new FizzBuzz(fizzBuzzes);
         //when
         Boolean result = fizzbuzz.isFizzBuzz(12);
         //then
         System.assert(result == false, 'It should return true');
+    }
+
+    @IsTest
+    static void testConstructor(){
+        //given
+        FizzBuzz__c fizz = new FizzBuzz__c(Value_for_Analysis__c = 3);
+        List<FizzBuzz__c> fizzBuzzes = new List<FizzBuzz__c>{fizz};
+        //when
+        FizzBuzz fb = new FizzBuzz(fizzBuzzes);
+        System.assert(fb.recordsToProcess[0].Value_for_Analysis__c == 3);
+    }
+
+    @isTest
+    static void recordIsFizz(){
+        //given
+        FizzBuzz__c fizzer = new FizzBuzz__c(Value_for_Analysis__c = 3);
+        List<FizzBuzz__c> fizzBuzzes = new List<FizzBuzz__c>{fizzer};
+        FizzBuzz fizzbuzz = new FizzBuzz(fizzBuzzes);
+        //when
+        fizzbuzz.run();
+        //then
+        System.assert(fizzbuzz.recordsToProcess[0].Results__c == 'Fizz');
+
     }
 }
