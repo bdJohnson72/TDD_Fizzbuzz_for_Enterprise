@@ -81,7 +81,7 @@ private class FizzBuzz_Tests {
         System.assert(fb.recordsToProcess[0].Value_for_Analysis__c == 3);
     }
 
-    @isTest
+    @IsTest
     static void recordIsFizz(){
         //given
         FizzBuzz__c fizzer = new FizzBuzz__c(Value_for_Analysis__c = 3);
@@ -91,6 +91,41 @@ private class FizzBuzz_Tests {
         fizzbuzz.run();
         //then
         System.assert(fizzbuzz.recordsToProcess[0].Results__c == 'Fizz');
-
     }
+
+    @IsTest
+    static void recordIsFizzBuzz(){
+        //given
+        FizzBuzz__c fizzer = new FizzBuzz__c(Value_for_Analysis__c = 15);
+        List<FizzBuzz__c> fizzBuzzes = new List<FizzBuzz__c>{fizzer};
+        FizzBuzz fizzbuzz = new FizzBuzz(fizzBuzzes);
+        //when
+        fizzbuzz.run();
+        //then
+        System.assert(fizzbuzz.recordsToProcess[0].Results__c == 'FizzBuzz');
+    }
+
+    @IsTest
+    static void recordIsBuzz(){
+        //given
+        FizzBuzz__c fizzer = new FizzBuzz__c(Value_for_Analysis__c = 5);
+        List<FizzBuzz__c> fizzBuzzes = new List<FizzBuzz__c>{fizzer};
+        FizzBuzz fizzbuzz = new FizzBuzz(fizzBuzzes);
+        //when
+        fizzbuzz.run();
+        //then
+        System.assert(fizzbuzz.recordsToProcess[0].Results__c == 'Buzz');
+    }
+
+    @IsTest
+    static void isFizzIntegration(){
+        //given
+        FizzBuzz__c fizzbuzz = new FizzBuzz__c(Value_for_Analysis__c = 3);
+        //when
+        insert fizzbuzz;
+        //then
+        FizzBuzz__c updatedFizzBuzz = [SELECT Results__c FROM  FizzBuzz__c LIMIT 1];
+        System.assert(updatedFizzBuzz.Results__c == 'Fizz');
+    }
+
 }

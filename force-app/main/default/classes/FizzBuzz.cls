@@ -36,9 +36,14 @@ public with sharing class FizzBuzz {
 
     public void run() {
         for (FizzBuzz__c fb : this.recordsToProcess) {
-            if(isFizz((Integer)fb.Value_for_Analysis__c)){
+            if(isFizzBuzz((Integer)fb.Value_for_Analysis__c)){
+                fb.Results__c = 'FizzBuzz';
+                continue;
+            }else if(isFizz((Integer)fb.Value_for_Analysis__c)){
                 fb.Results__c = 'Fizz';
                 continue;
+            }else if(isBuzz((Integer)fb.Value_for_Analysis__c)){
+                fb.Results__c = 'Buzz';
             }
         }
     }
